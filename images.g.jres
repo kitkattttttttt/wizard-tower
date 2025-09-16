@@ -4,6 +4,31 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Apprentice"
     },
+    "image2": {
+        "data": "hwQSAAQAAAD//wAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAP//AAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "dashEmpty"
+    },
+    "image3": {
+        "data": "hwQSAAQAAAD//wAAL/IAAC/yAAAv8gAAL/IAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAP//AAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "dashOne"
+    },
+    "image4": {
+        "data": "hwQSAAQAAAD//wAAT/QAAE/0AABP9AAAT/QAAE/0AABP9AAAT/QAAE/0AAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAP//AAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "dashTwo"
+    },
+    "image5": {
+        "data": "hwQSAAQAAAD//wAAX/UAAF/1AABf9QAAX/UAAF/1AABf9QAAX/UAAF/1AABf9QAAX/UAAF/1AABf9QAAD/AAAA/wAAAP8AAAD/AAAP//AAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "dashThree"
+    },
+    "image6": {
+        "data": "hwQSAAQAAAD//wAAf/cAAH/3AAB/9wAAf/cAAH/3AAB/9wAAf/cAAH/3AAB/9wAAf/cAAH/3AAB/9wAAf/cAAH/3AAB/9wAAf/cAAP//AAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "dashFour"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
