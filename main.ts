@@ -1,18 +1,16 @@
 namespace SpriteKind {
     export const info = SpriteKind.create()
 }
-// Single Jump
-// 
+// Jump
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mySprite.vy == 0) {
         mySprite.vy = -150
     }
 })
 // Dash/Dash Meter
-// 
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (dash == 100) {
-        if (mySprite.vx != 0) {
+        if (mySprite.vx != 0 || mySprite.vy != 0) {
             if (mySprite.vx > 0) {
                 for (let index = 0; index < 10; index++) {
                     mySprite.x += 3
@@ -21,6 +19,16 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
             } else if (mySprite.vx < 0) {
                 for (let index = 0; index < 10; index++) {
                     mySprite.x += -3
+                    pause(15)
+                }
+            } else if (mySprite.vy < 0) {
+                for (let index = 0; index < 10; index++) {
+                    mySprite.y += -3
+                    pause(15)
+                }
+            } else if (mySprite.vy > 0) {
+                for (let index = 0; index < 10; index++) {
+                    mySprite.y += 3
                     pause(15)
                 }
             }
@@ -53,7 +61,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 // Setup
-// 
 let dashMeter: Sprite = null
 let dash = 0
 let mySprite: Sprite = null
