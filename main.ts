@@ -69,4 +69,5 @@ tiles.setCurrentTilemap(tilemap`level1`)
 mySprite = sprites.create(assets.image`Apprentice`, SpriteKind.Player)
 controller.moveSprite(mySprite, 100, 0)
 mySprite.ay = 300
+scene.cameraFollowSprite(mySprite)
 dash = 100
