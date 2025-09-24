@@ -35,6 +35,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
             dash = 0
             dashMeter = sprites.create(assets.image`dashEmpty`, SpriteKind.info)
             dashMeter.setPosition(12, 4)
+            dashMeter.setFlag(SpriteFlag.RelativeToCamera, true)
             for (let index = 0; index < 25; index++) {
                 dash += 1
                 pause(10)
