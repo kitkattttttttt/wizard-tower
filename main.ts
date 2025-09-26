@@ -7,17 +7,17 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         mySprite.vy = -150
     }
 })
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-	
+controller.left.onEvent(ControllerButtonEvent.Released, function () {
+    mySprite.setImage(assets.image`Apprentice`)
 })
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
     mySprite.setImage(assets.image`Apprentice`)
 })
-controller.left.onEvent(ControllerButtonEvent.Released, function () {
-	
-})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-	
+    mySprite.setImage(assets.image`ApprenticeFaceRight`)
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.setImage(assets.image`ApprenticeFaceLeft`)
 })
 // Dash/Dash Meter
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
