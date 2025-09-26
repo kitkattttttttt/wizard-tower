@@ -7,6 +7,18 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         mySprite.vy = -150
     }
 })
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+	
+})
+controller.right.onEvent(ControllerButtonEvent.Released, function () {
+    mySprite.setImage(assets.image`Apprentice`)
+})
+controller.left.onEvent(ControllerButtonEvent.Released, function () {
+	
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+	
+})
 // Dash/Dash Meter
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (dash == 100) {
@@ -72,3 +84,4 @@ controller.moveSprite(mySprite, 100, 0)
 mySprite.ay = 300
 scene.cameraFollowSprite(mySprite)
 dash = 100
+tiles.placeOnTile(mySprite, tiles.getTileLocation(5, 20))
