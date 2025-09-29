@@ -24,11 +24,6 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "dashFour"
     },
-    "image8": {
-        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8ADwAAAAAPAP8P8PAAAA////hP8A/w//iIiE3f//D4+IiIXd/4j/8ImIhT2PiP8An4mBP5+IDwDwn5Hd/0UPAADwn/8A/w8AAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "ApprenticeFaceRight"
-    },
     "image1": {
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAAAAAA8P//AP8PAPD/9D3///8A/4/0P/+I//CPiIXdj0QPj4iIhd2PUQ/wn4mBP5+I/wDwn4E9/5n/AADwn/8A/w8AAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
         "mimeType": "image/x-mkcd-f4",
@@ -43,6 +38,26 @@
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAAAAAA8P//AP8PAPD/9N3/RQ8A/4+EP/+ID/CPiIU9j4j/j4iIhd2fiP+fiIiB3f+ZD5/5n4H/AP8P8A/wnw8AAAAA8ADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "ApprenticeFaceLeft"
+    },
+    "image10": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "ApprenticeFaceRight2"
+    },
+    "image11": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "ApprenticeFaceRight0"
+    },
+    "image8": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8ADwAAAAAPAP8P8PAAAA////hP8A/w//iIiE3f//D4+IiIXd/4j/8ImIhT2PiP8An4mBP5+IDwDwn5Hd/0UPAADwn/8A/w8AAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "ApprenticeFaceRight"
+    },
+    "image12": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8ADwAAAAAPAP8P8PAAAA////hP8A/w//iIiE3f//D4+IiIXd/4j/8ImIhT2PiP8An4mBP5+IDwDwn5Hd/0UPAADwn/8A/w8AAADwAADwDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "ApprenticeFaceRight1"
     },
     "*": {
         "mimeType": "image/x-mkcd-f4",
