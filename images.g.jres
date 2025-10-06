@@ -94,6 +94,16 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "health1"
     },
+    "image20": {
+        "data": "hwQOAAsAAAAAAADw/wAAAAAA/393DwAAAP93Z2YPAADwd2Z2cw8AAH9m9/9zDwAAf3Z3d3cPAAAfdnd3dw8AAB92d3d3DwAAf3Z3d3cPAAAfZvf/cw8AAPBxZnZzDwAAAP8RZ2YPAAAAAP8fdw8AAAAAAPD/AAAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "slimeEnemy"
+    },
+    "image21": {
+        "data": "hwQQABAAAAAAAP///wAAAADwIuL+AAAAAPAi4v4AAAAA8CLi/gAAAADwIuIfDwAAAD8i4h8PAAAAPyLi3w8AAAAvIv7fDwAA8CPi3x3xAADwI/IREQ8AAPD//90dDwAAAO/fERHxAAAA8P4d8Q8AAAAA7//xAAAAAADw/hEPAAAAAAD//wAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "bookEnemy"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
