@@ -2,26 +2,43 @@ namespace SpriteKind {
     export const info = SpriteKind.create()
     export const slimeEnemy = SpriteKind.create()
 }
-/**
- * Setup
- */
 // Jump
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mySprite.vy == 0) {
         mySprite.vy = -150
     }
 })
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.setImage(assets.image`ApprenticeFaceLeft1`)
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    if (isInvincible == false) {
+        Life += -1
+        scene.cameraShake(4, 500)
+        isInvincible = true
+        timer.after(1000, function () {
+            isInvincible = false
+        })
+    }
 })
-controller.right.onEvent(ControllerButtonEvent.Released, function () {
-    mySprite.setImage(assets.image`Apprentice`)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite, location) {
+    if (isInvincible == false) {
+        Life += -1
+        scene.cameraShake(4, 500)
+        isInvincible = true
+        timer.after(1000, function () {
+            isInvincible = false
+        })
+    }
 })
 controller.left.onEvent(ControllerButtonEvent.Released, function () {
     mySprite.setImage(assets.image`Apprentice`)
 })
+controller.right.onEvent(ControllerButtonEvent.Released, function () {
+    mySprite.setImage(assets.image`Apprentice`)
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.setImage(assets.image`ApprenticeFaceRight1`)
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.setImage(assets.image`ApprenticeFaceLeft1`)
 })
 // Dash/Dash Meter
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -50,7 +67,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
             }
             dash = 0
             dashMeter = sprites.create(assets.image`dashEmpty`, SpriteKind.info)
-            dashMeter.setPosition(12, 13)
+            dashMeter.setPosition(26, 13)
             dashMeter.setFlag(SpriteFlag.RelativeToCamera, true)
             for (let index = 0; index < 25; index++) {
                 dash += 1
@@ -77,18 +94,49 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite, location) {
-    if (isInvincible == false) {
-        Life += -1
-        scene.cameraShake(4, 500)
-        isInvincible = true
-        timer.after(1000, function () {
-            isInvincible = false
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`magicGood`, function (sprite, location) {
+    if (allowMagic == true) {
+        if (magicVar < 100) {
+            magicVar += 25
+            scene.cameraShake(4, 500)
+            allowMagic = false
+            timer.after(500, function () {
+                allowMagic = true
+            })
+        }
+    }
+})
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    sprites.destroy(Magic)
+    if (magicVar >= 25) {
+        Magic = sprites.create(assets.image`Projectile1`, SpriteKind.Projectile)
+        Magic.setPosition(mySprite.x, mySprite.y)
+        pause(50)
+        Magic.setImage(assets.image`Projectile2`)
+        pause(50)
+        Magic.setImage(assets.image`Projectile3`)
+        pause(50)
+        if (controller.left.isPressed()) {
+            Magic.setImage(assets.image`Projectile4left`)
+            Magic.setVelocity(-200, 0)
+        } else {
+            Magic.setImage(assets.image`Projectile4right`)
+            Magic.setVelocity(200, 0)
+        }
+        magicVar = magicVar - 25
+        timer.after(500, function () {
+            sprites.destroy(Magic)
         })
     }
 })
-let isInvincible = false
+let Magic: Sprite = null
 let dashMeter: Sprite = null
+let isInvincible = false
+let allowMagic = false
+let magicVar = 0
 let dash = 0
 let mySprite: Sprite = null
 scene.setBackgroundColor(6)
@@ -98,8 +146,13 @@ controller.moveSprite(mySprite, 100, 0)
 mySprite.ay = 300
 scene.cameraFollowSprite(mySprite)
 dash = 100
+let magicMeter = sprites.create(assets.image`manaMeterFour`, SpriteKind.info)
+magicMeter.setPosition(9, 31)
+magicMeter.setFlag(SpriteFlag.RelativeToCamera, true)
+magicVar = 100
 tiles.placeOnTile(mySprite, tiles.getTileLocation(5, 20))
 let Life = 6
+allowMagic = true
 let lives = sprites.create(assets.image`health6`, SpriteKind.info)
 lives.setPosition(27, 6)
 lives.setFlag(SpriteFlag.RelativeToCamera, true)
@@ -132,6 +185,19 @@ let book6 = sprites.create(assets.image`bookEnemy`, SpriteKind.Enemy)
 tiles.placeOnTile(book6, tiles.getTileLocation(35, 17))
 let book7 = sprites.create(assets.image`bookEnemy`, SpriteKind.Enemy)
 tiles.placeOnTile(book7, tiles.getTileLocation(40, 20))
+forever(function () {
+    if (magicVar < 25) {
+        magicMeter.setImage(assets.image`manaMeterEmpty`)
+    } else if (magicVar >= 25 && magicVar < 50) {
+        magicMeter.setImage(assets.image`manaMeterOne`)
+    } else if (magicVar >= 50 && magicVar < 75) {
+        magicMeter.setImage(assets.image`manaMeterTwo`)
+    } else if (magicVar >= 75 && magicVar < 100) {
+        magicMeter.setImage(assets.image`manaMeterThree`)
+    } else {
+        magicMeter.setImage(assets.image`manaMeterFour`)
+    }
+})
 forever(function () {
     if (Life == 6) {
         lives.setImage(assets.image`health6`)
@@ -196,5 +262,14 @@ forever(function () {
         book7.follow(mySprite, 50)
     } else {
         book7.follow(null)
+    }
+})
+forever(function () {
+    if (spriteutils.distanceBetween(mySprite, slime1) < 100) {
+        if (mySprite.x < slime1.x) {
+            slime1.setVelocity(-50, 0)
+        } else {
+            slime1.setVelocity(50, 0)
+        }
     }
 })
