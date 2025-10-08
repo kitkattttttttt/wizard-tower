@@ -18,6 +18,60 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         })
     }
 })
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    while (false) {
+        animation.runImageAnimation(
+        mySprite,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `],
+        500,
+        false
+        )
+    }
+})
+controller.right.onEvent(ControllerButtonEvent.Released, function () {
+    while (false) {
+        animation.runImageAnimation(
+        mySprite,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `],
+        500,
+        false
+        )
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite, location) {
     if (isInvincible == false) {
         Life += -1
@@ -27,18 +81,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite
             isInvincible = false
         })
     }
-})
-controller.left.onEvent(ControllerButtonEvent.Released, function () {
-    mySprite.setImage(assets.image`Apprentice`)
-})
-controller.right.onEvent(ControllerButtonEvent.Released, function () {
-    mySprite.setImage(assets.image`Apprentice`)
-})
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.setImage(assets.image`ApprenticeFaceRight1`)
-})
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.setImage(assets.image`ApprenticeFaceLeft1`)
 })
 // Dash/Dash Meter
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -267,9 +309,50 @@ forever(function () {
 forever(function () {
     if (spriteutils.distanceBetween(mySprite, slime1) < 100) {
         if (mySprite.x < slime1.x) {
-            slime1.setVelocity(-50, 0)
+            slime1.vx = -50
         } else {
-            slime1.setVelocity(50, 0)
+            slime1.vx = 50
         }
     }
+    slime1.ay = 300
+})
+forever(function () {
+    if (spriteutils.distanceBetween(mySprite, slime2) < 100) {
+        if (mySprite.x < slime2.x) {
+            slime2.vx = -50
+        } else {
+            slime2.vx = 50
+        }
+    }
+    slime2.ay = 300
+})
+forever(function () {
+    if (spriteutils.distanceBetween(mySprite, slime3) < 100) {
+        if (mySprite.x < slime3.x) {
+            slime3.vx = -50
+        } else {
+            slime3.vx = 50
+        }
+    }
+    slime3.ay = 300
+})
+forever(function () {
+    if (spriteutils.distanceBetween(mySprite, slime4) < 100) {
+        if (mySprite.x < slime4.x) {
+            slime4.vx = -50
+        } else {
+            slime4.vx = 50
+        }
+    }
+    slime4.ay = 300
+})
+forever(function () {
+    if (spriteutils.distanceBetween(mySprite, slime5) < 100) {
+        if (mySprite.x < slime5.x) {
+            slime5.vx = -50
+        } else {
+            slime5.vx = 50
+        }
+    }
+    slime5.ay = 300
 })
