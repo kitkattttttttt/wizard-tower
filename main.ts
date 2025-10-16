@@ -5,6 +5,12 @@ namespace SpriteKind {
 // Jump
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mySprite.vy == 0) {
+        animation.runImageAnimation(
+        mySprite,
+        assets.animation`jump`,
+        100,
+        false
+        )
         mySprite.vy = -150
     }
 })
@@ -16,60 +22,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         timer.after(1000, function () {
             isInvincible = false
         })
-    }
-})
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    while (false) {
-        animation.runImageAnimation(
-        mySprite,
-        [img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `],
-        500,
-        false
-        )
-    }
-})
-controller.right.onEvent(ControllerButtonEvent.Released, function () {
-    while (false) {
-        animation.runImageAnimation(
-        mySprite,
-        [img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `],
-        500,
-        false
-        )
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite, location) {
@@ -143,6 +95,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`magicGood`, function (sprite,
     if (allowMagic == true) {
         if (magicVar < 100) {
             magicVar += 25
+            Life += 1
             scene.cameraShake(4, 500)
             allowMagic = false
             timer.after(500, function () {
@@ -153,7 +106,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`magicGood`, function (sprite,
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     sprites.destroy(Magic)
-    if (magicVar >= 25) {
+    if (magicVar >= 10) {
         Magic = sprites.create(assets.image`Projectile1`, SpriteKind.Projectile)
         Magic.setPosition(mySprite.x, mySprite.y)
         pause(50)
@@ -168,7 +121,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             Magic.setImage(assets.image`Projectile4right`)
             Magic.setVelocity(200, 0)
         }
-        magicVar = magicVar - 25
+        magicVar = magicVar - 10
         timer.after(500, function () {
             sprites.destroy(Magic)
         })
@@ -181,7 +134,7 @@ let allowMagic = false
 let magicVar = 0
 let dash = 0
 let mySprite: Sprite = null
-scene.setBackgroundColor(6)
+scene.setBackgroundImage(assets.image`background`)
 tiles.setCurrentTilemap(tilemap`level1`)
 mySprite = sprites.create(assets.image`Apprentice`, SpriteKind.Player)
 controller.moveSprite(mySprite, 100, 0)
