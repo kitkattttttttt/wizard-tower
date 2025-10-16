@@ -2,18 +2,6 @@ namespace SpriteKind {
     export const info = SpriteKind.create()
     export const slimeEnemy = SpriteKind.create()
 }
-// Jump
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (mySprite.vy == 0) {
-        animation.runImageAnimation(
-        mySprite,
-        assets.animation`jump`,
-        100,
-        false
-        )
-        mySprite.vy = -150
-    }
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (isInvincible == false) {
         Life += -1
@@ -22,6 +10,27 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         timer.after(1000, function () {
             isInvincible = false
         })
+    }
+})
+// Jump
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (mySprite.vy == 0) {
+        if (facing == 1) {
+            animation.runImageAnimation(
+            mySprite,
+            assets.animation`jump`,
+            100,
+            false
+            )
+        } else if (facing == 2) {
+            animation.runImageAnimation(
+            mySprite,
+            assets.animation`jump`,
+            100,
+            false
+            )
+        }
+        mySprite.vy = -150
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite, location) {
@@ -33,6 +42,126 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite
             isInvincible = false
         })
     }
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    facing = 1
+    animation.runImageAnimation(
+    mySprite,
+    [img`
+        . . . . . f f f . . . . . . . . 
+        . . . . f f f 8 f . . . . . . . 
+        . . . . f f 8 8 9 f . . . . . . 
+        . . . f . f 8 8 8 9 f . . . . . 
+        . . . . . f 8 8 8 9 f . . . . . 
+        . . . . f f 8 8 8 8 9 f . . . . 
+        . . . . f 4 4 5 5 1 1 f . . . . 
+        . . . f f 8 8 8 8 8 9 9 f . . . 
+        . . . . f f d d d f d f . . . . 
+        . . . . . f d d 3 3 d f . . . . 
+        . . . . . . f f f f f . . . . . 
+        . . . . . . f f 8 9 f . . . . . 
+        . . . . . f f 8 8 8 5 f . . . . 
+        . . . . . f f 8 8 8 4 f f . . . 
+        . . . . . f f f f f f f f . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . f f f f f f . . . . . . . 
+        . . f 8 8 8 8 9 9 f f . . . . . 
+        . . f f f 8 8 8 8 8 9 f . . . . 
+        . f . . f 8 8 8 8 8 8 9 f . . . 
+        . . . . f 4 4 5 5 5 1 1 f . . . 
+        . . . f 8 8 8 8 8 8 8 8 9 f . . 
+        . . . . f f d d d f d f f . . . 
+        . . . . . f d d 3 3 d f . . . . 
+        . . . . . . f f f f f . . . . . 
+        . . . . f f 8 8 8 9 f . . . . . 
+        . . . f f 8 8 8 8 5 f . . . . . 
+        . . . f f 8 8 8 8 4 f . . . . . 
+        . . . f f f f f f f . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . f f f . . . . . . . . 
+        . . . . f f f 8 f . . . . . . . 
+        . . . . f f 8 8 9 f . . . . . . 
+        . . . f . f 8 8 8 9 f . . . . . 
+        . . . . . f 8 8 8 9 f . . . . . 
+        . . . . f f 8 8 8 8 9 f . . . . 
+        . . . . f 4 4 5 5 1 1 f . . . . 
+        . . . f f 8 8 8 8 8 9 9 f . . . 
+        . . . . f f d d d f d f . . . . 
+        . . . . . f d d 3 3 d f . . . . 
+        . . . . . . f f f f f . . . . . 
+        . . . . . . f f 8 9 f . . . . . 
+        . . . . . f f 8 8 8 5 f . . . . 
+        . . . . . f f 8 8 8 4 f f . . . 
+        . . . . . f f f f f f f f . . . 
+        . . . . . . . . . . . . . . . . 
+        `],
+    500,
+    false
+    )
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    facing = 2
+    animation.runImageAnimation(
+    mySprite,
+    [img`
+        . . . . . . . . f f f . . . . . 
+        . . . . . . . f 8 f f f . . . . 
+        . . . . . . f f 8 9 f f . . . . 
+        . . . . . f f 8 8 9 f . f . . . 
+        . . . . . f f 8 8 8 f . . . . . 
+        . . . . f f 8 8 8 9 f f . . . . 
+        . . . . f 4 4 5 5 1 1 f . . . . 
+        . . . f f f 8 8 8 8 9 f f . . . 
+        . . . . f d f d d d f f . . . . 
+        . . . . f d 3 3 d d f . . . . . 
+        . . . . . f f f f f . . . . . . 
+        . . . . . f f 8 9 f . . . . . . 
+        . . . . f 5 8 8 8 9 f . . . . . 
+        . . . f f 4 8 8 8 9 f . . . . . 
+        . . . f f f f f f f f . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . f f f f f f . . . 
+        . . . . . f f f f 8 8 8 9 f . . 
+        . . . . f f 8 8 8 8 9 f f f . . 
+        . . . f f 8 8 8 8 8 9 f . . f . 
+        . . . f 4 4 5 5 5 1 1 f . . . . 
+        . . f f 8 8 8 9 8 9 9 9 f . . . 
+        . . . f f d f d d d f f . . . . 
+        . . . . f d 3 3 d d f . . . . . 
+        . . . . . f f f f f . . . . . . 
+        . . . . . f f 8 8 9 f f . . . . 
+        . . . . . f 5 8 8 8 9 f f . . . 
+        . . . . . f 4 8 8 8 9 f f . . . 
+        . . . . . . f f f f f f f . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . . . . f f f . . . . . 
+        . . . . . . . f 8 f f f . . . . 
+        . . . . . . f f 8 9 f f . . . . 
+        . . . . . f f 8 8 9 f . f . . . 
+        . . . . . f f 8 8 8 f . . . . . 
+        . . . . f f 8 8 8 9 f f . . . . 
+        . . . . f 4 4 5 5 1 1 f . . . . 
+        . . . f f f 8 8 8 8 9 f f . . . 
+        . . . . f d f d d d f f . . . . 
+        . . . . f d 3 3 d d f . . . . . 
+        . . . . . f f f f f . . . . . . 
+        . . . . . f f 8 9 f . . . . . . 
+        . . . . f 5 8 8 8 9 f . . . . . 
+        . . . f f 4 8 8 8 9 f . . . . . 
+        . . . f f f f f f f f . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `],
+    500,
+    false
+    )
 })
 // Dash/Dash Meter
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -95,7 +224,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`magicGood`, function (sprite,
     if (allowMagic == true) {
         if (magicVar < 100) {
             magicVar += 25
-            Life += 1
+            if (Life < 6) {
+                Life += 1
+            }
             scene.cameraShake(4, 500)
             allowMagic = false
             timer.after(500, function () {
@@ -129,8 +260,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 let Magic: Sprite = null
 let dashMeter: Sprite = null
+let facing = 0
 let isInvincible = false
 let allowMagic = false
+let Life = 0
 let magicVar = 0
 let dash = 0
 let mySprite: Sprite = null
@@ -146,7 +279,7 @@ magicMeter.setPosition(9, 31)
 magicMeter.setFlag(SpriteFlag.RelativeToCamera, true)
 magicVar = 100
 tiles.placeOnTile(mySprite, tiles.getTileLocation(5, 20))
-let Life = 6
+Life = 6
 allowMagic = true
 let lives = sprites.create(assets.image`health6`, SpriteKind.info)
 lives.setPosition(27, 6)
