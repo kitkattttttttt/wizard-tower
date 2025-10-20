@@ -2,23 +2,132 @@ namespace SpriteKind {
     export const info = SpriteKind.create()
     export const slimeEnemy = SpriteKind.create()
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (isInvincible == false) {
-        Life += -1
-        scene.cameraShake(4, 500)
-        isInvincible = true
-        timer.after(1000, function () {
-            isInvincible = false
-        })
-    }
-})
 // Jump
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mySprite.vy == 0) {
         if (facing == 1) {
             animation.runImageAnimation(
             mySprite,
-            assets.animation`jump`,
+            [img`
+                . . . . f f f . . . . . . . . . 
+                . . . f f f 8 f . . . . . . . . 
+                . . . f f 8 8 9 f . . . . . . . 
+                . . f . f f 8 8 9 f . . . . . . 
+                . . . . f f 8 8 9 f . . . . . . 
+                . . . f f f 8 8 8 9 f . . . . . 
+                . . . f 1 1 5 5 4 4 f . . . . . 
+                . . f f f 8 8 8 8 9 9 f . . . . 
+                . . . f f d d d f d f . . . . . 
+                . . . . f d d 3 3 d f . . . . . 
+                . . . . . f f f f f . . . . . . 
+                . . . . . f f 8 9 f . . . . . . 
+                . . . . f f 8 8 8 5 f . . . . . 
+                . . . . f f 8 8 8 4 f f . . . . 
+                . . . . f f f f f f f f . . . . 
+                . . . . . . . . . . . . . . . . 
+                `,img`
+                . . . . f f f . . . . . . . . . 
+                . . . f f f 8 f . . . . . . . . 
+                . . . f f 8 8 9 f . . . . . . . 
+                . . f . f f 8 8 9 f . . . . . . 
+                . . . . f f 8 8 9 f . . . . . . 
+                . . . f f f 8 8 8 9 f . . . . . 
+                . . . f 1 1 5 5 4 4 f . . . . . 
+                . . f f f 8 8 8 8 9 9 f . . . . 
+                . . . f f d d d f d f . . . . . 
+                . . . . f d d 3 3 d f . . . . . 
+                . . . . . f f f f f . . . . . . 
+                . . . . . f f 8 9 f . . . . . . 
+                . . . . f f 8 8 8 5 f . . . . . 
+                . . . . f f 8 8 8 4 f f . . . . 
+                . 9 9 9 9 9 9 9 9 9 9 9 9 9 9 . 
+                . . . . . . . . . . . . . . . . 
+                `,img`
+                . . . . f f f . . . . . . . . . 
+                . . . f f f 8 f . . . . . . . . 
+                . . . f f 8 8 9 f . . . . . . . 
+                . . f . f f 8 8 9 f . . . . . . 
+                . . . . f f 8 8 9 f . . . . . . 
+                . . . f f f 8 8 8 9 f . . . . . 
+                . . . f 1 1 5 5 4 4 f . . . . . 
+                . . f f f 8 8 8 8 9 9 f . . . . 
+                . . . f f d d d f d f . . . . . 
+                . . 5 . f d d 3 3 d f . . . . . 
+                . 5 1 5 . f f f f f . . . . . . 
+                . 9 5 . . f f 8 9 5 . 9 . . . . 
+                . 9 . . f f 9 8 5 1 5 9 . . . . 
+                . 9 . 9 f f 9 8 8 5 f 9 . 9 . . 
+                . 9 9 9 9 9 9 9 9 9 9 9 9 9 9 . 
+                . . . . . . . . . . . . . . . . 
+                `,img`
+                . . . . f f f . . . . . . . . . 
+                . . . f f f 8 f . . . . . . . . 
+                . . . f f 8 8 9 f . . . . . . . 
+                . . f . f f 8 8 9 f . . . . . . 
+                . . . . f f 8 8 9 f . . . . . . 
+                . . . f f f 8 8 8 9 f . . . . . 
+                . . . f 1 1 5 5 4 4 f . . . . . 
+                . . f f f 8 8 8 8 9 9 f . . . . 
+                . . . f f 5 d d f d 9 . . . . . 
+                . . 9 . 5 1 5 3 3 d 9 . . . . . 
+                . . 9 . . 5 9 f f 9 9 9 . . 9 . 
+                . 9 9 . . 9 9 8 9 9 5 9 . . 9 . 
+                . 9 9 . 9 9 9 9 9 5 1 5 . 9 9 . 
+                . 9 9 9 9 9 9 9 9 9 5 9 9 9 9 . 
+                . 9 9 9 9 9 9 9 9 9 9 9 9 9 9 . 
+                . . . . . . . . . . . . . . . . 
+                `,img`
+                . . . . f f f . . . . . . . . . 
+                . . . f f f 8 f . . . . . . . . 
+                . . . f f 8 8 9 f . . . . . . . 
+                . . f . f f 8 8 9 f . . . . . . 
+                . . . . f f 8 8 9 f . . . . . . 
+                . . . f f f 8 8 8 9 f . . . . . 
+                . . . f 1 1 5 5 4 4 f . . . . . 
+                . . f f f 8 8 8 8 9 9 f . . . . 
+                . . . f f d d d f d f . . . . . 
+                . . 5 . f d d 3 3 d f . . . . . 
+                . 5 1 5 . f f f f f . . . . . . 
+                . 9 5 . . f f 8 9 5 . 9 . . . . 
+                . 9 . . f f 9 8 5 1 5 9 . . . . 
+                . 9 . 9 f f 9 8 8 5 f 9 . 9 . . 
+                . 9 9 9 9 9 9 9 9 9 9 9 9 9 9 . 
+                . . . . . . . . . . . . . . . . 
+                `,img`
+                . . . . f f f . . . . . . . . . 
+                . . . f f f 8 f . . . . . . . . 
+                . . . f f 8 8 9 f . . . . . . . 
+                . . f . f f 8 8 9 f . . . . . . 
+                . . . . f f 8 8 9 f . . . . . . 
+                . . . f f f 8 8 8 9 f . . . . . 
+                . . . f 1 1 5 5 4 4 f . . . . . 
+                . . f f f 8 8 8 8 9 9 f . . . . 
+                . . . f f d d d f d f . . . . . 
+                . . . . f d d 3 3 d f . . . . . 
+                . . . . . f f f f f . . . . . . 
+                . . . . . f f 8 9 f . . . . . . 
+                . . . . f f 8 8 8 5 f . . . . . 
+                . . . . f f 8 8 8 4 f f . . . . 
+                . 9 9 9 9 9 9 9 9 9 9 9 9 9 9 . 
+                . . . . . . . . . . . . . . . . 
+                `,img`
+                . . . . f f f . . . . . . . . . 
+                . . . f f f 8 f . . . . . . . . 
+                . . . f f 8 8 9 f . . . . . . . 
+                . . f . f f 8 8 9 f . . . . . . 
+                . . . . f f 8 8 9 f . . . . . . 
+                . . . f f f 8 8 8 9 f . . . . . 
+                . . . f 1 1 5 5 4 4 f . . . . . 
+                . . f f f 8 8 8 8 9 9 f . . . . 
+                . . . f f d d d f d f . . . . . 
+                . . . . f d d 3 3 d f . . . . . 
+                . . . . . f f f f f . . . . . . 
+                . . . . . f f 8 9 f . . . . . . 
+                . . . . f f 8 8 8 5 f . . . . . 
+                . . . . f f 8 8 8 4 f f . . . . 
+                . . . . f f f f f f f f . . . . 
+                . . . . . . . . . . . . . . . . 
+                `],
             100,
             false
             )
@@ -31,6 +140,16 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
             )
         }
         mySprite.vy = -150
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    if (isInvincible == false) {
+        Life += -1
+        scene.cameraShake(4, 500)
+        isInvincible = true
+        timer.after(1000, function () {
+            isInvincible = false
+        })
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite, location) {
@@ -260,8 +379,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 let Magic: Sprite = null
 let dashMeter: Sprite = null
-let facing = 0
 let isInvincible = false
+let facing = 0
 let allowMagic = false
 let Life = 0
 let magicVar = 0
