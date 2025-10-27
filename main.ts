@@ -152,7 +152,31 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         })
     }
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.Player, assets.tile`stonemiddle0`, function (sprite, location) {
+    if (needKeys == 0) {
+        if (level == 1) {
+            sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+            tiles.setCurrentTilemap(tilemap`level3`)
+            needKeys = 4
+            dash = 100
+            magicVar = 100
+            Life = 6
+            tiles.placeOnTile(mySprite, tiles.getTileLocation(0, 18))
+            slime1 = sprites.create(assets.image`slimeEnemy`, SpriteKind.Enemy)
+            slime2 = sprites.create(assets.image`slimeEnemy`, SpriteKind.Enemy)
+            book1 = sprites.create(assets.image`bookEnemy`, SpriteKind.Enemy)
+            book2 = sprites.create(assets.image`bookEnemy`, SpriteKind.Enemy)
+            tiles.placeOnRandomTile(slime1, assets.tile`stoneLeftEnd0`)
+            tiles.placeOnRandomTile(slime2, assets.tile`stoneLeftEnd0`)
+            tiles.placeOnRandomTile(book1, assets.tile`stoneLeftEnd0`)
+            tiles.placeOnRandomTile(book2, assets.tile`stoneLeftEnd0`)
+            level += 2
+        } else {
+            game.gameOver(true)
+        }
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite2, location) {
     if (isInvincible == false) {
         Life += -1
         scene.cameraShake(4, 500)
@@ -161,6 +185,13 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`magicEvil0`, function (sprite
             isInvincible = false
         })
     }
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite3, otherSprite2) {
+    sprites.destroy(otherSprite2)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`key`, function (sprite, location) {
+    needKeys += -1
+    tiles.setTileAt(location, assets.tile`transparency16`)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     facing = 1
@@ -221,6 +252,21 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     500,
     false
     )
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`magicGood`, function (sprite4, location2) {
+    if (allowMagic == true) {
+        if (magicVar < 100) {
+            magicVar += 25
+            if (Life < 6) {
+                Life += 1
+            }
+            scene.cameraShake(4, 500)
+            allowMagic = false
+            timer.after(500, function () {
+                allowMagic = true
+            })
+        }
+    }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     facing = 2
@@ -336,24 +382,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    sprites.destroy(otherSprite)
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`magicGood`, function (sprite, location) {
-    if (allowMagic == true) {
-        if (magicVar < 100) {
-            magicVar += 25
-            if (Life < 6) {
-                Life += 1
-            }
-            scene.cameraShake(4, 500)
-            allowMagic = false
-            timer.after(500, function () {
-                allowMagic = true
-            })
-        }
-    }
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     sprites.destroy(Magic)
     if (magicVar >= 10) {
@@ -381,12 +409,20 @@ let Magic: Sprite = null
 let dashMeter: Sprite = null
 let isInvincible = false
 let facing = 0
+let book2: Sprite = null
+let book1: Sprite = null
+let slime2: Sprite = null
+let slime1: Sprite = null
 let allowMagic = false
 let Life = 0
 let magicVar = 0
+let needKeys = 0
 let dash = 0
 let mySprite: Sprite = null
+let level = 0
+level = 1
 scene.setBackgroundImage(assets.image`background`)
+game.splash("Wizard Tower!")
 tiles.setCurrentTilemap(tilemap`level1`)
 mySprite = sprites.create(assets.image`Apprentice`, SpriteKind.Player)
 controller.moveSprite(mySprite, 100, 0)
@@ -394,6 +430,7 @@ mySprite.ay = 300
 scene.cameraFollowSprite(mySprite)
 dash = 100
 let magicMeter = sprites.create(assets.image`manaMeterFour`, SpriteKind.info)
+needKeys = 4
 magicMeter.setPosition(9, 31)
 magicMeter.setFlag(SpriteFlag.RelativeToCamera, true)
 magicVar = 100
@@ -403,10 +440,10 @@ allowMagic = true
 let lives = sprites.create(assets.image`health6`, SpriteKind.info)
 lives.setPosition(27, 6)
 lives.setFlag(SpriteFlag.RelativeToCamera, true)
-let slime1 = sprites.create(assets.image`slimeEnemy`, SpriteKind.Enemy)
+slime1 = sprites.create(assets.image`slimeEnemy`, SpriteKind.Enemy)
 tiles.placeOnTile(slime1, tiles.getTileLocation(14, 5))
 slime1.ay = 300
-let slime2 = sprites.create(assets.image`slimeEnemy`, SpriteKind.Enemy)
+slime2 = sprites.create(assets.image`slimeEnemy`, SpriteKind.Enemy)
 tiles.placeOnTile(slime2, tiles.getTileLocation(5, 8))
 slime2.ay = 300
 let slime3 = sprites.create(assets.image`slimeEnemy`, SpriteKind.Enemy)
@@ -418,9 +455,9 @@ slime4.ay = 300
 let slime5 = sprites.create(assets.image`slimeEnemy`, SpriteKind.Enemy)
 tiles.placeOnTile(slime5, tiles.getTileLocation(38, 20))
 slime5.ay = 300
-let book1 = sprites.create(assets.image`bookEnemy`, SpriteKind.Enemy)
+book1 = sprites.create(assets.image`bookEnemy`, SpriteKind.Enemy)
 tiles.placeOnTile(book1, tiles.getTileLocation(15, 4))
-let book2 = sprites.create(assets.image`bookEnemy`, SpriteKind.Enemy)
+book2 = sprites.create(assets.image`bookEnemy`, SpriteKind.Enemy)
 tiles.placeOnTile(book2, tiles.getTileLocation(5, 3))
 let book3 = sprites.create(assets.image`bookEnemy`, SpriteKind.Enemy)
 tiles.placeOnTile(book3, tiles.getTileLocation(1, 5))
@@ -560,4 +597,9 @@ forever(function () {
         }
     }
     slime5.ay = 300
+})
+forever(function () {
+    music.play(music.createSong(hex`
+                    0078000408020500001c00010a006400f401640000040000000000000000000000000005000004300000000800012a08001000012710001800012c18002000012720002800012a28003000012730003800012c38004000012701001c000f05001202c102c2010004050028000000640028000314000602000430000400080001240c00100001201400180001251c00200001202400280001242c00300001203400380001253c004000012005001c000f0a006400f4010a0000040000000000000000000000000000000002300000000400012a08000c00012710001400012c18001c00012720002400012a28002c00012730003400012c38003c00012706001c00010a006400f401640000040000000000000000000000000000000002300004000c0001270c001400012414001c0001291c002400012424002c0001272c003400012434003c0001293c004000012409010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c800680000000100020308040005000108080009000203080c000d00010810001100020308140015000108180019000203081c001d00010820002100020308240025000108280029000203082c002d00010830003100020308340035000108380039000203083c003d000108
+                    `), music.PlaybackMode.UntilDone)
 })
